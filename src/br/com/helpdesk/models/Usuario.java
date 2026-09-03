@@ -4,15 +4,15 @@ public class Usuario extends Pessoa {
     private String email;
     private String password;
     private String setor;
-    private boolean ativo;
+    private boolean admin;
 
     // Constructor
-    public Usuario(String nome, int cpf, String email, String password, String setor, boolean ativo) {
+    public Usuario(String nome, int cpf, String email, String password, String setor) {
         super(nome, cpf);
         this.email = email;
         this.password = password;
         this.setor = setor;
-        this.ativo = ativo;
+        this.admin = false;
     }
 
     // Getters e Setters
@@ -40,11 +40,11 @@ public class Usuario extends Pessoa {
         this.setor = setor;
     }
 
-    public boolean isAtivo() {
-        return ativo;
+    public boolean isAdmin() {
+        return admin;
     }
 
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
+    public void setAtivo(boolean admin) {
+        this.admin = admin;
     }
 }

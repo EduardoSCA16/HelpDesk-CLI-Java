@@ -8,10 +8,12 @@ public enum Prioridade {
 
     private final int nivel;
 
+    // Constructor
     Prioridade(int nivel) {
         this.nivel = nivel;
     }
 
+    // Get
     public int getNivel() {
         return nivel;
     }
