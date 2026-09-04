@@ -4,7 +4,7 @@ import br.com.helpdesk.enums.Prioridade;
 import br.com.helpdesk.enums.StatusChamado;
 
 public class Chamado {
-    private static int idChamado = 1;
+    private static int idChamado = 0;
     private String titulo;
     private String descricao;
     private Usuario usuario;

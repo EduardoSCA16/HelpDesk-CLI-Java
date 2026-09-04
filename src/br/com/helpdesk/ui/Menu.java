@@ -2,33 +2,37 @@ package br.com.helpdesk.ui;
 
 public class Menu {
 
-    public String telaLogin() {
-        return """
-                ================================
+    public void telaLogin() {
+        String mensagem = """
+                \n================================
                            BEM VINDO!
                 ================================
                 
-                Entrar como:
                 1. Usuário
                 2. Técnico
-                """;
+                3. Sair
+                
+                Entrar como:\s""";
+        System.out.print(mensagem);
     }
 
-    public String exibirMenuUsuario() {
-        return """
-                ================================
+    public void exibirMenuUsuario() {
+        String mensagem = """
+                \n================================
                        HELP DESK - USUÁRIO
                 ================================
                 
                 1. Criar Chamado
                 2. Meus Chamados
-                5. Logout
-                """;
+                3. Logout
+                
+                Escolha uma opção:\s""";
+        System.out.print(mensagem);
     }
 
-    public String exibirMenuTecnico() {
-        return """
-                ================================
+    public void exibirMenuTecnico() {
+        String mensagem = """
+                \n================================
                        HELP DESK - TECNICO
                 ================================
                 
@@ -37,54 +41,62 @@ public class Menu {
                 3. Usuários
                 4. Técnicos
                 5. Logout
-                """;
+                
+                Escolha uma opção:\s""";
+        System.out.print(mensagem);
     }
 
-    public String exibirCriarChamado() {
-        return """
-                ================================
+    public void exibirCriarChamado() {
+        String mensagem = """
+                \n================================
                          CRIAR CHAMADO
-                ================================
+                ================================\n
                 """;
+        System.out.println(mensagem);
     }
 
-    public String exibirMeusChamados() {
-        return """
-                ================================
+    public void exibirMeusChamados() {
+        String mensagem = """
+                \n================================
                           MEUS CHAMADOS
-                ================================
+                ================================\n
                 """;
+        System.out.println(mensagem);
     }
 
-    public String exibirChamados() {
-        return """
-                ================================
+    public void exibirChamados() {
+        String mensagem = """
+                \n================================
                             CHAMADOS
-                ================================
+                ================================\n
                 """;
+        System.out.println(mensagem);
     }
 
-    public String exibirRelatorios() {
-        return """
-                ================================
+    public void exibirRelatorios() {
+        String mensagem = """
+                \n================================
                            RELATÓRIOS
-                ================================
+                ================================\n
                 """;
+        System.out.println(mensagem);
     }
 
-    public String exibirUsuarios() {
-        return """
-                ================================
+    public void exibirUsuarios() {
+        String mensagem = """
+                \n================================
                            USUÁRIOS
-                ================================
+                ================================\n
                 """;
+        System.out.println(mensagem);
     }
 
-    public String exibirTecnicos() {
-        return """
-                ================================
+    public void exibirTecnicos() {
+        String mensagem = """
+                \n================================
                            TÉCNICOS
-                ================================
+                ================================\n
                 """;
+        System.out.println(mensagem);
     }
 }
