@@ -8,8 +8,8 @@ public class Menu {
                            BEM VINDO!
                 ================================
                 
-                1. Usuário
-                2. Técnico
+                1. Login
+                2. Cadastrar usuário
                 3. Sair
                 
                 Entrar como:\s""";

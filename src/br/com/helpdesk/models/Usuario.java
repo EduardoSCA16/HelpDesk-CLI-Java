@@ -7,7 +7,7 @@ public class Usuario extends Pessoa {
     private boolean admin;
 
     // Constructor
-    public Usuario(String nome, int cpf, String email, String password, String setor) {
+    public Usuario(String nome, String cpf, String email, String password, String setor) {
         super(nome, cpf);
         this.email = email;
         this.password = password;
@@ -44,7 +44,7 @@ public class Usuario extends Pessoa {
         return admin;
     }
 
-    public void setAtivo(boolean admin) {
+    public void setAdmin(boolean admin) {
         this.admin = admin;
     }
 }

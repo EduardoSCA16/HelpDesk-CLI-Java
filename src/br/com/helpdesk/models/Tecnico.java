@@ -4,9 +4,9 @@ public class Tecnico extends Usuario {
     private String especialidade;
 
     // Constructor
-    public Tecnico(String nome, int cpf, String email, String password, String setor, String especialidade) {
+    public Tecnico(String nome, String cpf, String email, String password, String setor, String especialidade) {
         super(nome, cpf, email, password, setor);
-        this.setAtivo(true);
+        this.setAdmin(true);
         this.especialidade = especialidade;
     }
 

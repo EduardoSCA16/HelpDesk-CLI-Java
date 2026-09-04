@@ -2,7 +2,10 @@ package br.com.helpdesk;
 
 import br.com.helpdesk.exceptions.RespostaInvalidaException;
 import br.com.helpdesk.models.Chamado;
+import br.com.helpdesk.models.Tecnico;
+import br.com.helpdesk.models.Usuario;
 import br.com.helpdesk.services.ChamadoServices;
+import br.com.helpdesk.services.UsuarioServices;
 import br.com.helpdesk.ui.Menu;
 
 import java.util.ArrayList;
@@ -15,7 +18,17 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         Menu menu = new Menu();
         ChamadoServices chamadoServices = new ChamadoServices();
+        UsuarioServices usuarioServices = new UsuarioServices();
+        List<Usuario> usuarios = new ArrayList<>();
         List<Chamado> chamados = new ArrayList<>();
+        Tecnico tecnico = new Tecnico(
+                "Eduardo",
+                "12345678909",
+                "tecnico@helpdesk.com.br",
+                "admin123",
+                "TI",
+                "Suporte"
+        );
 
         while (true) {
             try {
@@ -25,6 +38,8 @@ public class Main {
 
                 int opcao;
                 if (login == 1) {
+
+                    Usuario usuario = usuarioServices.criarUsuario();
                     menu.exibirMenuUsuario();
                     opcao = sc.nextInt();
                     sc.nextLine();
@@ -35,7 +50,6 @@ public class Main {
 
                     if (opcao == 1) {
                         menu.exibirCriarChamado();
-                        // Configurar um usuário
                         chamadoServices.criarChamado(usuario);
                     }
                 } else if (login == 2) {

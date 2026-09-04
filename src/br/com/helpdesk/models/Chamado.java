@@ -36,6 +36,7 @@ public class Chamado {
         this.prioridade = prioridade;
     }
 
+    // Constructor
     public Chamado(String titulo, String descricao, Usuario usuario, Prioridade prioridade) {
         this.idChamado = idChamado++;
         this.titulo = titulo;
@@ -43,5 +44,15 @@ public class Chamado {
         this.usuario = usuario;
         this.statusChamado = StatusChamado.ABERTO;
         this.prioridade = prioridade;
+    }
+
+    // toString
+    @Override
+    public String toString() {;
+        return  "Usuário: " + usuario.getNome() + "\n" +
+                "Título: " + titulo + "\n" +
+                "Descrição: " + "\n" +
+                "Status Chamado: " + statusChamado + "\n" +
+                "Prioridade: " + prioridade;
     }
 }
