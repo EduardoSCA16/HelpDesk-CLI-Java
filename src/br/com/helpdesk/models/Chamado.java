@@ -4,7 +4,8 @@ import br.com.helpdesk.enums.Prioridade;
 import br.com.helpdesk.enums.StatusChamado;
 
 public class Chamado {
-    private static int idChamado = 0;
+    private static int proximoIdChamado = 1;
+    private int idChamado;
     private String titulo;
     private String descricao;
     private Usuario usuario;
@@ -14,10 +15,6 @@ public class Chamado {
     // Getters e Setters
     public int getIdChamado() {
         return idChamado;
-    }
-
-    public void setIdChamado(int idChamado) {
-        Chamado.idChamado = idChamado;
     }
 
     public StatusChamado getStatusChamado() {
@@ -46,7 +43,7 @@ public class Chamado {
 
     // Constructor
     public Chamado(String titulo, String descricao, Usuario usuario, Prioridade prioridade) {
-        this.idChamado = idChamado++;
+        this.idChamado = proximoIdChamado++;
         this.titulo = titulo;
         this.descricao = descricao;
         this.usuario = usuario;

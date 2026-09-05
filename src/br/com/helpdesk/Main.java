@@ -19,8 +19,8 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Menu menu = new Menu();
-        ChamadoServices chamadoServices = new ChamadoServices();
-        UsuarioServices usuarioServices = new UsuarioServices();
+        ChamadoServices chamadoServices = new ChamadoServices(sc);
+        UsuarioServices usuarioServices = new UsuarioServices(sc);
         List<Usuario> usuarios = new ArrayList<>();
         List<Chamado> chamados = new ArrayList<>();
         Tecnico tecnico = new Tecnico(
@@ -48,60 +48,72 @@ public class Main {
 
                     if (usuarioLogado != null) {
                         while (true) {
-                            if (usuarioLogado instanceof Tecnico) {
-                                // Login como Técnico
-                                menu.exibirMenuTecnico();
-                                opcao = sc.nextInt();
-                                sc.nextLine();
+                            try {
+                                if (usuarioLogado instanceof Tecnico) {
+                                    // Login como Técnico
+                                    menu.exibirMenuTecnico();
+                                    opcao = sc.nextInt();
+                                    sc.nextLine();
 
-                                if (opcao < 1 || opcao > 6) {
-                                    throw new RespostaInvalidaException();
-                                }
+                                    if (opcao < 1 || opcao > 5) {
+                                        throw new RespostaInvalidaException();
+                                    }
 
-                                if (opcao == 1) {
-                                    menu.exibirChamados();
-                                    chamadoServices.listarTodosOsChamados(chamados);
+                                    if (opcao == 1) {
+                                        menu.exibirChamados();
+                                        chamadoServices.listarTodosOsChamados(chamados);
 
-                                } else if (opcao == 2) {
-                                    menu.exibirRelatorios();
-                                    chamadoServices.gerarRelatorio(chamados);
+                                    } else if (opcao == 2) {
+                                        menu.exibirRelatorios();
+                                        chamadoServices.gerarRelatorio(chamados);
 
-                                } else if (opcao == 3) {
-                                    menu.alterarStatus();
-                                    chamadoServices.alterarStatus(chamados);
+                                    } else if (opcao == 3) {
+                                        menu.alterarStatus();
+                                        chamadoServices.alterarStatus(chamados);
 
-                                } else if (opcao == 4) {
-                                    menu.exibirUsuarios();
-                                    usuarioServices.listarUsuarios(usuarios);
+                                    } else if (opcao == 4) {
+                                        menu.exibirUsuarios();
+                                        usuarioServices.listarUsuarios(usuarios);
 
-                                } else {
-                                    System.out.println("Saindo da conta...");
-                                    break;
-                                }
-
-                            } else {
-                                // Login como Usuário
-                                menu.exibirMenuUsuario();
-                                opcao = sc.nextInt();
-                                sc.nextLine();
-
-                                if (opcao < 1 || opcao > 3) {
-                                    throw new RespostaInvalidaException();
-                                }
-
-                                if (opcao == 1) {
-                                    menu.exibirCriarChamado();
-                                    Chamado chamado = chamadoServices.criarChamado(usuarioLogado);
-                                    chamados.add(chamado);
-                                    
-                                } else if (opcao == 2) {
-                                    menu.exibirMeusChamados();
-                                    chamadoServices.listarChamadosDoUsuario(chamados, usuarioLogado);
+                                    } else {
+                                        System.out.println("Saindo da conta...");
+                                        break;
+                                    }
 
                                 } else {
-                                    System.out.println("Saindo da conta...");
-                                    break;
+                                    // Login como Usuário
+                                    menu.exibirMenuUsuario();
+                                    opcao = sc.nextInt();
+                                    sc.nextLine();
+
+                                    if (opcao < 1 || opcao > 3) {
+                                        throw new RespostaInvalidaException();
+                                    }
+
+                                    if (opcao == 1) {
+                                        menu.exibirCriarChamado();
+                                        Chamado chamado = chamadoServices.criarChamado(usuarioLogado);
+                                        chamados.add(chamado);
+
+                                    } else if (opcao == 2) {
+                                        menu.exibirMeusChamados();
+                                        chamadoServices.listarChamadosDoUsuario(chamados, usuarioLogado);
+
+                                    } else {
+                                        System.out.println("Saindo da conta...");
+                                        break;
+                                    }
                                 }
+                            } catch (RespostaInvalidaException e) {
+                                System.out.println(e.getMessage());
+                                System.out.print("Pressione ENTER para continuar...");
+                                sc.nextLine();
+                            } catch (InputMismatchException e) {
+                                System.out.println("Resposta inválida! Digite somente números.");
+                                sc.nextLine();
+
+                                System.out.print("Pressione ENTER para continuar...");
+                                sc.nextLine();
                             }
                         }
                     }
@@ -121,7 +133,9 @@ public class Main {
                 System.out.print("Pressione ENTER para continuar...");
                 sc.nextLine();
             } catch (InputMismatchException e) {
-                System.out.println("Resposta inválida! Somente números.");                System.out.println("Pressione ENTER para continuar...");
+                System.out.println("Resposta inválida! Digite somente números.");
+                sc.nextLine();
+
                 System.out.print("Pressione ENTER para continuar...");
                 sc.nextLine();
             }

@@ -9,7 +9,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ChamadoServices {
-    Scanner sc = new Scanner(System.in);
+    Scanner sc;
+
+    public ChamadoServices(Scanner sc) {
+        this.sc = sc;
+    }
 
     public void alterarStatus(List<Chamado> chamados) {
         System.out.print("Digite o ID do chamado que deseja alterar: ");
@@ -21,6 +25,7 @@ public class ChamadoServices {
                 3. Resolvido
                 4. Fechado""");
         int opcao = sc.nextInt();
+        sc.nextLine();
         StatusChamado novoStatus = switch (opcao) {
             case 1 -> StatusChamado.ABERTO;
             case 2 -> StatusChamado.EM_ANDAMENTO;
@@ -35,9 +40,10 @@ public class ChamadoServices {
         for (Chamado chamado : chamados) {
             if (chamado.getIdChamado() == id) {
                 chamado.setStatusChamado(novoStatus);
+                System.out.println("\nStatus alterado!");
             }
         }
-        System.out.println("\nStatus alterado!");
+
         System.out.print("Pressione ENTER para continuar...");
         sc.nextLine();
     }

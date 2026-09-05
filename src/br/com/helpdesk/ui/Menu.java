@@ -40,8 +40,7 @@ public class Menu {
                 2. Relatórios
                 3. Alterar Status
                 4. Usuários
-                5. Técnicos
-                6. Logout
+                5. Logout
                 
                 Escolha uma opção:\s""";
         System.out.print(mensagem);

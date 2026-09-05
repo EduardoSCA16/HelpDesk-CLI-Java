@@ -8,7 +8,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class UsuarioServices {
-    Scanner sc = new Scanner(System.in);
+    Scanner sc;
+
+    public UsuarioServices(Scanner sc) {
+        this.sc = sc;
+    }
 
     public Usuario criarUsuario() {
         while (true) {
@@ -82,7 +86,7 @@ public class UsuarioServices {
 
     public void listarUsuarios(List<Usuario> usuarios) {
         for (Usuario usuario : usuarios) {
-            System.out.println(usuario);
+            System.out.println(usuario + "\n");
         }
         System.out.print("\nPressione ENTER para continuar...");
         sc.nextLine();
