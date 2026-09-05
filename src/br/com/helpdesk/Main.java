@@ -7,6 +7,8 @@ import br.com.helpdesk.models.Usuario;
 import br.com.helpdesk.services.ChamadoServices;
 import br.com.helpdesk.services.UsuarioServices;
 import br.com.helpdesk.ui.Menu;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -22,13 +24,17 @@ public class Main {
         List<Usuario> usuarios = new ArrayList<>();
         List<Chamado> chamados = new ArrayList<>();
         Tecnico tecnico = new Tecnico(
-                "Eduardo",
+                "Eduardo SCA",
                 "12345678909",
-                "tecnico@helpdesk.com.br",
+                "tecnico@helpdesk.com",
                 "admin123",
                 "TI",
                 "Suporte"
         );
+        usuarios.add(tecnico);
+        Gson gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .create();
 
         while (true) {
             try {
@@ -38,28 +44,41 @@ public class Main {
 
                 int opcao;
                 if (login == 1) {
+                    Usuario usuarioLogado = usuarioServices.login(usuarios);
 
-                    Usuario usuario = usuarioServices.criarUsuario();
-                    menu.exibirMenuUsuario();
-                    opcao = sc.nextInt();
-                    sc.nextLine();
+                    if (usuarioLogado != null) {
+                        if (usuarioLogado instanceof Tecnico) {
+                            // Login como Técnico
+                            menu.exibirMenuTecnico();
+                            opcao = sc.nextInt();
+                            sc.nextLine();
 
-                    if (opcao < 1 || opcao > 4) {
-                        throw new RespostaInvalidaException();
+                            if (opcao < 1 || opcao > 5) {
+                                throw new RespostaInvalidaException();
+                            }
+
+
+                        } else {
+                            // Login como Usuário
+                            menu.exibirMenuUsuario();
+                            opcao = sc.nextInt();
+                            sc.nextLine();
+
+                            if (opcao < 1 || opcao > 4) {
+                                throw new RespostaInvalidaException();
+                            }
+
+                            if (opcao == 1) {
+                                menu.exibirCriarChamado();
+                                chamadoServices.criarChamado(usuarioLogado);
+                            }
+                        }
                     }
 
-                    if (opcao == 1) {
-                        menu.exibirCriarChamado();
-                        chamadoServices.criarChamado(usuario);
-                    }
                 } else if (login == 2) {
-                    menu.exibirMenuTecnico();
-                    opcao = sc.nextInt();
-                    sc.nextLine();
+                    Usuario usuarioCadastrado = usuarioServices.criarUsuario();
+                    usuarios.add(usuarioCadastrado);
 
-                    if (opcao < 1 || opcao > 5) {
-                        throw new RespostaInvalidaException();
-                    }
                 } else if (login == 3) {
                     break;
                 } else {

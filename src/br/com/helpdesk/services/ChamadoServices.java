@@ -43,6 +43,9 @@ public class ChamadoServices {
             }
         };
 
+        System.out.println("\nChamado criado com sucesso!");
+        System.out.println("Pressione ENTER para continuar...");
+        sc.nextLine();
         return new Chamado(titulo, descricao, usuario, prioridade);
     }
 }

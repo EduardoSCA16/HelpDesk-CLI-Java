@@ -50,7 +50,7 @@ public class Menu {
         String mensagem = """
                 \n================================
                          CRIAR CHAMADO
-                ================================\n
+                ================================
                 """;
         System.out.println(mensagem);
     }
@@ -59,7 +59,7 @@ public class Menu {
         String mensagem = """
                 \n================================
                           MEUS CHAMADOS
-                ================================\n
+                ================================
                 """;
         System.out.println(mensagem);
     }
@@ -68,7 +68,7 @@ public class Menu {
         String mensagem = """
                 \n================================
                             CHAMADOS
-                ================================\n
+                ================================
                 """;
         System.out.println(mensagem);
     }
@@ -77,7 +77,7 @@ public class Menu {
         String mensagem = """
                 \n================================
                            RELATÓRIOS
-                ================================\n
+                ================================
                 """;
         System.out.println(mensagem);
     }
@@ -86,7 +86,7 @@ public class Menu {
         String mensagem = """
                 \n================================
                            USUÁRIOS
-                ================================\n
+                ================================
                 """;
         System.out.println(mensagem);
     }
@@ -95,7 +95,7 @@ public class Menu {
         String mensagem = """
                 \n================================
                            TÉCNICOS
-                ================================\n
+                ================================
                 """;
         System.out.println(mensagem);
     }

@@ -13,10 +13,10 @@ public class UsuarioServices {
     public Usuario criarUsuario() {
         while (true) {
             try {
-                System.out.print("Digite Username: ");
+                System.out.print("Nome completo: ");
                 String user = sc.nextLine();
 
-                System.out.println("CPF: ");
+                System.out.print("CPF: ");
                 String cpf = sc.nextLine();
 
                 if (!cpfValido(cpf)) {
@@ -33,7 +33,7 @@ public class UsuarioServices {
                 String setor = sc.nextLine();
 
                 Usuario usuario = new Usuario(user, cpf, email, senha, setor);
-                System.out.println("\nUsuário criado com sucesso!\n");
+                System.out.print("\nUsuário cadastrado com sucesso!\n");
                 return usuario;
 
             } catch (RespostaInvalidaException e) {
@@ -54,8 +54,20 @@ public class UsuarioServices {
         return cpf.length() == 11;
     }
 
-    // Criar um metodo de login
     public Usuario login(List<Usuario> usuarios) {
+        System.out.print("Email: ");
+        String email = sc.nextLine();
+
+        System.out.print("Senha: ");
+        String senha = sc.nextLine();
+
+        for (Usuario usuario : usuarios) {
+            if (email.equalsIgnoreCase(usuario.getEmail()) && senha.equals(usuario.getPassword())) {
+                return usuario;
+            }
+        }
+
+        System.out.println("\nUsuário não cadastrado ou email e senha estão incorretos.");
         return null;
     }
 }
