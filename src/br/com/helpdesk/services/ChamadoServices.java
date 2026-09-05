@@ -5,6 +5,7 @@ import br.com.helpdesk.enums.StatusChamado;
 import br.com.helpdesk.models.Chamado;
 import br.com.helpdesk.models.Usuario;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class ChamadoServices {
@@ -44,8 +45,27 @@ public class ChamadoServices {
         };
 
         System.out.println("\nChamado criado com sucesso!");
-        System.out.println("Pressione ENTER para continuar...");
+        System.out.print("Pressione ENTER para continuar...");
         sc.nextLine();
         return new Chamado(titulo, descricao, usuario, prioridade);
     }
+
+    public void listarTodosOsChamados(List<Chamado> chamados) {
+        for (Chamado chamado : chamados) {
+            System.out.println(chamado.toString() + "\n");
+        }
+        System.out.print("Pressione ENTER para continuar...");
+        sc.nextLine();
+    }
+
+    public void listarChamadosDoUsuario(List<Chamado> chamados, Usuario usuario) {
+        for (Chamado chamado : chamados) {
+            if (chamado.getUsuario().equals(usuario)) {
+                System.out.println(chamado + "\n");
+            }
+        }
+        System.out.print("Pressione ENTER para continuar...");
+        sc.nextLine();
+    }
+
 }

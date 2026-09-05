@@ -47,30 +47,59 @@ public class Main {
                     Usuario usuarioLogado = usuarioServices.login(usuarios);
 
                     if (usuarioLogado != null) {
-                        if (usuarioLogado instanceof Tecnico) {
-                            // Login como Técnico
-                            menu.exibirMenuTecnico();
-                            opcao = sc.nextInt();
-                            sc.nextLine();
+                        while (true) {
+                            if (usuarioLogado instanceof Tecnico) {
+                                // Login como Técnico
+                                menu.exibirMenuTecnico();
+                                opcao = sc.nextInt();
+                                sc.nextLine();
 
-                            if (opcao < 1 || opcao > 5) {
-                                throw new RespostaInvalidaException();
-                            }
+                                if (opcao < 1 || opcao > 5) {
+                                    throw new RespostaInvalidaException();
+                                }
 
+                                // Terminar de atribuir metodos
+                                if (opcao == 1) {
+                                    menu.exibirChamados();
+                                    chamadoServices.listarTodosOsChamados(chamados);
 
-                        } else {
-                            // Login como Usuário
-                            menu.exibirMenuUsuario();
-                            opcao = sc.nextInt();
-                            sc.nextLine();
+                                } else if (opcao == 2) {
+                                    menu.exibirRelatorios();
 
-                            if (opcao < 1 || opcao > 4) {
-                                throw new RespostaInvalidaException();
-                            }
+                                } else if (opcao == 3) {
+                                    menu.exibirUsuarios();
 
-                            if (opcao == 1) {
-                                menu.exibirCriarChamado();
-                                chamadoServices.criarChamado(usuarioLogado);
+                                } else if (opcao == 4) {
+                                    menu.exibirTecnicos();
+
+                                } else {
+                                    System.out.println("Saindo da conta...");
+                                    break;
+                                }
+
+                            } else {
+                                // Login como Usuário
+                                menu.exibirMenuUsuario();
+                                opcao = sc.nextInt();
+                                sc.nextLine();
+
+                                if (opcao < 1 || opcao > 3) {
+                                    throw new RespostaInvalidaException();
+                                }
+
+                                if (opcao == 1) {
+                                    menu.exibirCriarChamado();
+                                    Chamado chamado = chamadoServices.criarChamado(usuarioLogado);
+                                    chamados.add(chamado);
+                                    
+                                } else if (opcao == 2) {
+                                    menu.exibirMeusChamados();
+                                    chamadoServices.listarChamadosDoUsuario(chamados, usuarioLogado);
+
+                                } else {
+                                    System.out.println("Saindo da conta...");
+                                    break;
+                                }
                             }
                         }
                     }
@@ -87,11 +116,11 @@ public class Main {
 
             } catch (RespostaInvalidaException e) {
                 System.out.println(e.getMessage());
-                System.out.println("Pressione ENTER para continuar...");
+                System.out.print("Pressione ENTER para continuar...");
                 sc.nextLine();
             } catch (InputMismatchException e) {
                 System.out.println("Resposta inválida! Somente números.");                System.out.println("Pressione ENTER para continuar...");
-                System.out.println("Pressione ENTER para continuar...");
+                System.out.print("Pressione ENTER para continuar...");
                 sc.nextLine();
             }
         }

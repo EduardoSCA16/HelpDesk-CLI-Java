@@ -19,8 +19,10 @@ public class UsuarioServices {
                 System.out.print("CPF: ");
                 String cpf = sc.nextLine();
 
-                if (!cpfValido(cpf)) {
+                cpf = padronizarCPF(cpf);
+                if (!validarTamanhoCPF(cpf)) {
                     System.out.println("CPF inválido!");
+                    continue;
                 }
 
                 System.out.print("Digite o email: ");
@@ -48,10 +50,17 @@ public class UsuarioServices {
         }
     }
 
-    public boolean cpfValido(String cpf) {
+    public String padronizarCPF(String cpf) {
         cpf = cpf.replaceAll("\\D", "");
+        return cpf;
+    }
 
-        return cpf.length() == 11;
+    public boolean validarTamanhoCPF(String cpf) {
+        if (cpf.length() == 11) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public Usuario login(List<Usuario> usuarios) {
