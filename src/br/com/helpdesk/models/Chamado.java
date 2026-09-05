@@ -12,11 +12,11 @@ public class Chamado {
     private Prioridade prioridade;
 
     // Getters e Setters
-    public static int getIdChamado() {
+    public int getIdChamado() {
         return idChamado;
     }
 
-    public static void setIdChamado(int idChamado) {
+    public void setIdChamado(int idChamado) {
         Chamado.idChamado = idChamado;
     }
 
@@ -57,7 +57,8 @@ public class Chamado {
     // toString
     @Override
     public String toString() {;
-        return  "Usuário: " + usuario.getNome() + "\n" +
+        return  "ID: " + idChamado + "\n" +
+                "Usuário: " + usuario.getNome() + "\n" +
                 "Título: " + titulo + "\n" +
                 "Descrição: " + descricao + "\n" +
                 "Status Chamado: " + statusChamado + "\n" +

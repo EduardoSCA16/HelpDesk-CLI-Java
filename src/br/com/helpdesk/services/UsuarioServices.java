@@ -79,4 +79,12 @@ public class UsuarioServices {
         System.out.println("\nUsuário não cadastrado ou email e senha estão incorretos.");
         return null;
     }
+
+    public void listarUsuarios(List<Usuario> usuarios) {
+        for (Usuario usuario : usuarios) {
+            System.out.println(usuario);
+        }
+        System.out.print("\nPressione ENTER para continuar...");
+        sc.nextLine();
+    }
 }

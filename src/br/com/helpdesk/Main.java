@@ -54,23 +54,25 @@ public class Main {
                                 opcao = sc.nextInt();
                                 sc.nextLine();
 
-                                if (opcao < 1 || opcao > 5) {
+                                if (opcao < 1 || opcao > 6) {
                                     throw new RespostaInvalidaException();
                                 }
 
-                                // Terminar de atribuir metodos
                                 if (opcao == 1) {
                                     menu.exibirChamados();
                                     chamadoServices.listarTodosOsChamados(chamados);
 
                                 } else if (opcao == 2) {
                                     menu.exibirRelatorios();
+                                    chamadoServices.gerarRelatorio(chamados);
 
                                 } else if (opcao == 3) {
-                                    menu.exibirUsuarios();
+                                    menu.alterarStatus();
+                                    chamadoServices.alterarStatus(chamados);
 
                                 } else if (opcao == 4) {
-                                    menu.exibirTecnicos();
+                                    menu.exibirUsuarios();
+                                    usuarioServices.listarUsuarios(usuarios);
 
                                 } else {
                                     System.out.println("Saindo da conta...");

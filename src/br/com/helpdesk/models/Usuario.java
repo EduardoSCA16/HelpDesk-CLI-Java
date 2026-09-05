@@ -47,4 +47,12 @@ public class Usuario extends Pessoa {
     public void setAdmin(boolean admin) {
         this.admin = admin;
     }
+
+    @Override
+    public String toString() {
+        return  "Nome: " + getNome() + "\n" +
+                "Email: " + email + "\n" +
+                "Setor: " + setor + "\n" +
+                "Admin: " + admin;
+    }
 }

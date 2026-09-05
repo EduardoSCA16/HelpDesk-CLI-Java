@@ -38,9 +38,10 @@ public class Menu {
                 
                 1. Chamados
                 2. Relatórios
-                3. Usuários
-                4. Técnicos
-                5. Logout
+                3. Alterar Status
+                4. Usuários
+                5. Técnicos
+                6. Logout
                 
                 Escolha uma opção:\s""";
         System.out.print(mensagem);
@@ -82,6 +83,15 @@ public class Menu {
         System.out.println(mensagem);
     }
 
+    public void alterarStatus() {
+        String mensagem = """
+                \n================================
+                        ALTERAR STATUS
+                ================================
+                """;
+        System.out.println(mensagem);
+    }
+
     public void exibirUsuarios() {
         String mensagem = """
                 \n================================
@@ -91,12 +101,4 @@ public class Menu {
         System.out.println(mensagem);
     }
 
-    public void exibirTecnicos() {
-        String mensagem = """
-                \n================================
-                           TÉCNICOS
-                ================================
-                """;
-        System.out.println(mensagem);
-    }
 }

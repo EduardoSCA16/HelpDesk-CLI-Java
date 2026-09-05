@@ -11,8 +11,35 @@ import java.util.Scanner;
 public class ChamadoServices {
     Scanner sc = new Scanner(System.in);
 
-    public void alterarStatus(Chamado chamado, StatusChamado novoStatus){
-        chamado.setStatusChamado(novoStatus);
+    public void alterarStatus(List<Chamado> chamados) {
+        System.out.print("Digite o ID do chamado que deseja alterar: ");
+        int id = sc.nextInt();
+        System.out.println("""
+                Defina o novo Status:
+                1. Aberto
+                2. Em Andamento
+                3. Resolvido
+                4. Fechado""");
+        int opcao = sc.nextInt();
+        StatusChamado novoStatus = switch (opcao) {
+            case 1 -> StatusChamado.ABERTO;
+            case 2 -> StatusChamado.EM_ANDAMENTO;
+            case 3 -> StatusChamado.RESOLVIDO;
+            case 4 -> StatusChamado.FECHADO;
+            default -> {
+                System.out.println("Opção inválida. Definida como Status Aberto.");
+                yield StatusChamado.ABERTO;
+            }
+        };
+
+        for (Chamado chamado : chamados) {
+            if (chamado.getIdChamado() == id) {
+                chamado.setStatusChamado(novoStatus);
+            }
+        }
+        System.out.println("\nStatus alterado!");
+        System.out.print("Pressione ENTER para continuar...");
+        sc.nextLine();
     }
 
     public Chamado criarChamado(Usuario usuario) {
@@ -64,6 +91,32 @@ public class ChamadoServices {
                 System.out.println(chamado + "\n");
             }
         }
+        System.out.print("Pressione ENTER para continuar...");
+        sc.nextLine();
+    }
+
+    public void gerarRelatorio(List<Chamado> chamados) {
+        int qtdChamados = 0;
+        int qtdChamadosAbertos = 0;
+        int qtdChamadosEmAndamento = 0;
+        int qtdChamadosResolvidos = 0;
+        int qtdChamadosFechados = 0;
+
+        for (Chamado chamado : chamados) {
+            qtdChamados++;
+            switch (chamado.getStatusChamado()) {
+                case ABERTO -> qtdChamadosAbertos++;
+                case EM_ANDAMENTO -> qtdChamadosEmAndamento++;
+                case RESOLVIDO -> qtdChamadosResolvidos++;
+                case FECHADO -> qtdChamadosFechados++;
+            }
+        }
+        String relatorio =  "Quantidade de Chamados: " + qtdChamados + "\n" +
+                            "Chamados em Aberto: " + qtdChamadosAbertos + "\n" +
+                            "Chamados em Andamento: " + qtdChamadosEmAndamento + "\n" +
+                            "Chamados Resolvidos: " + qtdChamadosResolvidos + "\n" +
+                            "Chamados Fechados: " + qtdChamadosFechados + "\n";
+        System.out.println(relatorio);
         System.out.print("Pressione ENTER para continuar...");
         sc.nextLine();
     }
